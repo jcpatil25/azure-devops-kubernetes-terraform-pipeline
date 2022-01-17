@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -9,24 +10,53 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+# stages:
+# - stage: Build
+#   jobs:
+#   - job: Job1
+#     steps:
+#     - bash: echo Build job1
+# - stage: DevDeploy
+#   jobs:
+#   - job: DevDeployJob
+#     steps:
+#     - bash: echo DevDeploy job
+# - stage: QADeploy
+#   jobs:
+#   - job: QADeployJob
+#     steps:
+#     - bash: echo QADeploy job
+# - stage: ProdDeploy
+#   jobs:
+#   - job: ProdDeployJob
+#     steps:
+#     - bash: echo ProdDeploy job
 stages:
-- stage: Build
-  jobs:
-  - job: Job1
-    steps:
-    - bash: echo Build job1
-- stage: DevDeploy
-  jobs:
-  - job: DevDeployJob
-    steps:
-    - bash: echo DevDeploy job
-- stage: QADeploy
-  jobs:
-  - job: QADeployJob
-    steps:
-    - bash: echo QADeploy job
-- stage: ProdDeploy
-  jobs:
-  - job: ProdDeployJob
-    steps:
-    - bash: echo ProdDeploy job
+  - stage: FirstStage
+    jobs:
+      - job: firstJob
+        steps:
+        - bash: echo Build FirstJob
+        - bash: echo $(PipelineLevelVariable)
+        - bash: echo $(Build.BuildNumber)
+        - bash: echo $(Build.BuildId)
+        - bash: echo $(Build.SourceBranchName)
+        - bash: echo $(Build.SourcesDirectory)
+        - bash: echo $(System.DefaultWorkingDirectory)
+        - bash: ls -R $(System.DefaultWorkingDirectory)
+        - bash: echo $(Build.ArtifactStagingDirectory)
+        - bash: java -version
+        - bash: node --version
+        - bash: python --version 
+        - bash: mvn -version 
+        - bash: ls -R $(Build.ArtifactStagingDirectory)
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(System.DefaultWorkingDirectory)'
+            Contents: '**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'
