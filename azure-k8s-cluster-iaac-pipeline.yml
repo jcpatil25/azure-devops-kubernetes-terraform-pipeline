@@ -21,7 +21,7 @@ steps:
   inputs:
     command: 'validate'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    secureVarsFile: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(ssh_public_key.secureFilePath)'
+    secureVarsFile: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(ssh_public_key)'
     allowTelemetryCollection: true
 
 
