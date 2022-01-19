@@ -13,7 +13,7 @@ steps:
 - script: echo Hello, K8S Terraform!
   displayName: 'Run a one-line script'
 - task: DownloadSecureFile@1
-  name: ssh_public_key
+  name: publicKey
   inputs:
     secureFile: 'azure_rsa.pub'
     retryCount: '5'
@@ -21,7 +21,7 @@ steps:
   inputs:
     command: 'validate'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    secureVarsFile: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(ssh_public_key)'
+    secureVarsFile: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publicKey)'
     allowTelemetryCollection: true
 
 
