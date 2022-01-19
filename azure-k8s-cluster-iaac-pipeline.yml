@@ -21,7 +21,7 @@ steps:
   inputs:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
-    secureVarsFile: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendType: 'azurerm'
     backendServiceArm: 'PSL113790_ICC_Remediation_REQ000000762833(6c980470-27a0-4759-b7dc-26ed1c492299)'
     backendAzureRmSubscriptionId: '6c980470-27a0-4759-b7dc-26ed1c492299'
