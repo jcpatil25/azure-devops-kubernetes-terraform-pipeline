@@ -28,8 +28,8 @@ steps:
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
-    backendAzureRmStorageAccountName: 'jitustorageacct'
-    backendAzureRmContainerName: 'jitucontainer'
+    backendAzureRmStorageAccountName: 'jitustorageacct224222'
+    backendAzureRmContainerName: 'jitucontainer224222'
     backendAzureRmKey: 'k8s-dev.tfstate'
     allowTelemetryCollection: true
 
