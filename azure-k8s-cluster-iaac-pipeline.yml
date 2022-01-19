@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, K8S Terraform!
+  displayName: 'Run a one-line script'
+- task: DownloadSecureFile@1
+  name: ssh_public_key
+  inputs:
+    secureFile: 'azure_rsa.pub'
+    retryCount: '5'
+- task: TerraformCLI@0
+  inputs:
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    secureVarsFile: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(ssh_public_key.secureFilePath)'
+    allowTelemetryCollection: true
+
+
