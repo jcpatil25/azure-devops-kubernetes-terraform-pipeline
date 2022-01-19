@@ -30,7 +30,7 @@ steps:
     backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'jitustorageacct'
     backendAzureRmContainerName: 'jitucontainer'
-    backendAzureRmKey: 'k8s-dev.test'
+    backendAzureRmKey: 'k8s-dev.tfstate'
     allowTelemetryCollection: true
 
 
